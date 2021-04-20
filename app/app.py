@@ -16,14 +16,11 @@ from yolov5.utils.datasets import letterbox
 from yolov5.utils.general import check_img_size, non_max_suppression
 
 
-# Web Server
-APP = Flask(__name__)
+# Web Server Configuration
 DETECTION_URL = "/v1/detect"
 PORT = 8080
 
 # Model Parameters
-MODEL = None
-STRIDE = None
 IMGSZ = 704
 CONF_THRESH = 0.4  # Object confidence threshold
 IOU_THRESH = 0.45  # IOU threshold for NMS
@@ -35,6 +32,22 @@ CLASS_MAP = ['boats']
 DEVICE = 'cpu'
 
 
+class ModelServer(Flask):
+    """ Flask server that contains a YoloV5 model. """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.load_model()
+
+    def load_model(self):
+        """ Load the YoloV5 model. """
+        self.model = attempt_load('weights.pt', map_location='cpu')
+        self.stride = int(self.model.stride.max())
+        self.imgsz = check_img_size(IMGSZ, s=self.stride)
+
+
+APP = ModelServer(__name__)
+
+
 def preprocess(image_file):
     """ Prepare the input for inferencing. """
     # read image file
@@ -43,7 +56,7 @@ def preprocess(image_file):
     img = cv2.imdecode(img, 1)
 
     # resize image
-    img = letterbox(img, IMGSZ, stride=STRIDE)[0]
+    img = letterbox(img, APP.imgsz, stride=APP.stride)[0]
 
     # convert from BGR to RGB
     img = img[:, :, ::-1].transpose(2, 0, 1)
@@ -79,7 +92,7 @@ def detect():
         img = preprocess(img_file)
 
         # run inferencing
-        pred = MODEL(img)[0]
+        pred = APP.model(img)[0]
         pred = non_max_suppression(pred, CONF_THRESH, IOU_THRESH, NMS_CLASSES, agnostic=AGNOSTIC_NMS)[0]
         pred = pred.cpu().numpy().tolist()
         pred = map_classes(pred)
@@ -93,16 +106,14 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Flask api exposing yolov5 model")
     parser.add_argument("--port", default=PORT, type=int, help="port number")
     args = parser.parse_args()
-    return args.port
+    PORT = args.port
+
+
+def main():
+    """ Bootstrap the server components and run. """
+    parse_args()
+    APP.run(host="0.0.0.0", port=PORT)
 
 
 if __name__ == "__main__":
-    # get user options
-    PORT = parse_args()
-
-    # load model
-    MODEL = attempt_load('weights.pt', map_location='cpu')
-    STRIDE = int(MODEL.stride.max())
-    IMGSZ = check_img_size(IMGSZ, s=STRIDE)
-
-    APP.run(host="0.0.0.0", port=PORT)
+    main()
