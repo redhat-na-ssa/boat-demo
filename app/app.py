@@ -106,12 +106,12 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Flask api exposing yolov5 model")
     parser.add_argument("--port", default=PORT, type=int, help="port number")
     args = parser.parse_args()
-    PORT = args.port
+    return args.port
 
 
 def main():
     """ Bootstrap the server components and run. """
-    parse_args()
+    PORT = parse_args()
     APP.run(host="0.0.0.0", port=PORT)
 
 
