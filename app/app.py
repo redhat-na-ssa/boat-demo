@@ -49,7 +49,6 @@ def preprocess(image_file):
     img = img[:, :, ::-1].transpose(2, 0, 1)
     img = np.ascontiguousarray(img)
 
-
     # convert to tensor
     img = torch.from_numpy(img).to(DEVICE)
 
