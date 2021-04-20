@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: master
+    app.openshift.io/vcs-uri: https://github.com/redhat-naps-da/boat-detect/
+  labels:
+    app: boat-detect
+    app.kubernetes.io/component: boat-detect
+    app.kubernetes.io/instance: boat-detect
+    app.kubernetes.io/name: python
+    app.kubernetes.io/part-of: detection
+    app.openshift.io/runtime: python
+    app.openshift.io/runtime-version: 3.8-ubi8
+  name: boat-detect
+  namespace: boats-demo
+spec:
+  ports:
+  - name: 8080-tcp
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: boat-detect
+    deploymentconfig: boat-detect
+  sessionAffinity: None
+  type: ClusterIP
