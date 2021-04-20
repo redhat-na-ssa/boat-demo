@@ -19,7 +19,7 @@ from yolov5.utils.general import check_img_size, non_max_suppression
 # Web Server
 APP = Flask(__name__)
 DETECTION_URL = "/v1/detect"
-PORT = 5000
+PORT = 8080
 
 # Model Parameters
 MODEL = None
