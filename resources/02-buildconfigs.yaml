@@ -7,6 +7,43 @@ items:
       app.openshift.io/vcs-ref: master
       app.openshift.io/vcs-uri: https://github.com/redhat-naps-da/boat-detect.git
     labels:
+      app: boat-detect-notebook
+      app.kubernetes.io/component: boat-detect-notebook
+      app.kubernetes.io/instance: boat-detect-notebook
+      app.kubernetes.io/part-of: detection
+    name: boat-detect-notebook
+    namespace: boats-demo
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: boat-detect-notebook:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      contextDir: /environment
+      git:
+        uri: https://github.com/redhat-naps-da/boat-detect.git
+      type: Git
+    strategy:
+      dockerStrategy:
+        dockerfilePath: Dockerfile
+      type: Docker
+    successfulBuildsHistoryLimit: 5
+    triggers:
+    - type: ConfigChange
+  status:
+    lastVersion: 1
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      app.openshift.io/vcs-ref: master
+      app.openshift.io/vcs-uri: https://github.com/redhat-naps-da/boat-detect.git
+    labels:
       app: boat-detect-builder
       app.kubernetes.io/component: boat-detect-builder
       app.kubernetes.io/instance: boat-detect-builder
