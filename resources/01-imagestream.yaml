@@ -35,6 +35,29 @@ items:
   spec:
     lookupPolicy:
       local: false
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      app.openshift.io/vcs-ref: master
+      app.openshift.io/vcs-uri: https://github.com/redhat-naps-da/boat-detect/
+      opendatahub.io/notebook-image-url: "https://github.com/redhat-naps-da/boat-detect/"
+      opendatahub.io/notebook-image-name: "Boats Demo Notebook Image"
+      opendatahub.io/notebook-image-desc: "Jupyter notebook with dependencies for boats demo."
+    labels:
+      app: boat-detect
+      app.kubernetes.io/component: boat-detect
+      app.kubernetes.io/instance: boat-detect
+      app.kubernetes.io/name: python
+      app.kubernetes.io/part-of: detection
+      app.openshift.io/runtime: python
+      app.openshift.io/runtime-version: 3.8-ubi8
+      opendatahub.io/notebook-image: "true"
+    name: boat-detect-notebook
+    namespace: boats-demo
+  spec:
+    lookupPolicy:
+      local: false
 kind: List
 metadata:
   resourceVersion: ""
