@@ -2,7 +2,8 @@ FROM quay.io/thoth-station/s2i-lab-elyra:latest
 
 USER root
 COPY requirements.txt /requirements.txt
-COPY /var/run/secrets/etc-pki-entitlement /etc/pki/entitlement
+COPY /etc/pki/entitlement-host/entitlement-key.pem /etc/pki/entitlement-host/
+COPY /etc/pki/entitlement-host/entitlement.pem /etc/pki/entitlement-host/
 COPY /etc/rhsm/rhsm.conf /etc/rhsm
 COPY /etc/rhsm/ca/redhat-uep.pem /etc/rhsm/ca
 RUN ls -la /etc/pki/entitlement; \
