@@ -1,6 +1,7 @@
 FROM quay.io/thoth-station/s2i-lab-elyra:latest
 
 USER root
+RUN ls -la ~
 RUN mkdir /root/entitlements
 COPY requirements.txt /requirements.txt
 COPY /etc/pki/entitlement/* /root/entitlements/
