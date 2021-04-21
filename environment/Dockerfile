@@ -1,6 +1,7 @@
 FROM quay.io/thoth-station/s2i-lab-elyra:latest
 
 USER root
+RUN ls -la /etc/pki/entitlement /etc/pki/entitlement-host
 COPY requirements.txt /requirements.txt
 COPY /etc/pki/entitlement-host/entitlement-key.pem /etc/pki/entitlement-host/
 COPY /etc/pki/entitlement-host/entitlement.pem /etc/pki/entitlement-host/
