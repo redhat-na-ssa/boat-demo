@@ -1,0 +1,49 @@
+apiVersion: v1
+items:
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      app.openshift.io/vcs-ref: master
+      app.openshift.io/vcs-uri: https://github.com/redhat-naps-da/boat-detect/
+    labels:
+      app: boat-identify
+      app.kubernetes.io/component: boat-identify
+      app.kubernetes.io/instance: boat-identify
+      app.kubernetes.io/name: python
+      app.kubernetes.io/part-of: detection
+      app.openshift.io/runtime: python
+      app.openshift.io/runtime-version: 3.8-ubi8
+    name: boat-identify
+    namespace: boats-demo
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: boat-identify:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      contextDir: /identify
+      git:
+        uri: https://github.com/redhat-naps-da/boat-detect/
+      type: Git
+    strategy:
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: boat-detect-builder:latest
+          namespace: boats-demo
+      type: Source
+    successfulBuildsHistoryLimit: 5
+    triggers:
+    - imageChange:
+      type: ImageChange
+    - type: ConfigChange
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
