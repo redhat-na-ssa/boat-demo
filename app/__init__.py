@@ -1,1 +1,1 @@
-from .detection import preprocess, postprocess, detect
+from .detection import preprocess, postprocess, detect, load_model
