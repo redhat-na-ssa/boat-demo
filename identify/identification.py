@@ -84,10 +84,12 @@ def centroid_identify(meta0, meta1=None):
         db['missing'][ident]['frames'] = 0
                     
     # bury expired objects
+    new_missing = {}
     for ident, item in db['missing'].items():
         item['frames'] += 1
-        if item['frames'] > EXPIRE_THRESHOLD:
-            del db['missing'][ident]
+        if item['frames'] <= EXPIRE_THRESHOLD:
+            new_missing[ident] = item
+    db['missing'] = new_missing
 
     # update metadata
     for index in range(len(ids1)):
