@@ -75,7 +75,7 @@ def centroid_identify(meta0, meta1=None):
         del db['missing'][found]
                     
     # report new missing objects
-    lost = [ident for ident in ids0 if ident and ident not in ids1]
+    lost = [ident for ident in ids0 if ident and ident not in ids1 and ident not in ids_missing]
     for ident in lost:
         known_info = next(item for item in meta0['objects'] if item["id"] == ident)
         last_loc = centroids0[ids0.index(ident)]
