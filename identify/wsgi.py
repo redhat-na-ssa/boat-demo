@@ -15,7 +15,10 @@ APP = Flask(__name__)
 def identify():
     data = request.get_json(silent=True)
     if data:
-        resp = identification.centroid_identify(data['last'], data.get('now'))
+        resp = identification.centroid_identify(data.get('last_time'), \
+                                                data['last'], \
+                                                data.get('now_time'), \
+                                                data.get('now'))
         return json.dumps(resp)
     
     

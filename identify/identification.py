@@ -28,7 +28,7 @@ def _ensure_ids(meta, db):
             item['id'] = _id_generate(db)
 
 
-def centroid_identify(meta0, meta1=None):
+def centroid_identify(time0, meta0, time1=None, meta1=None):
     """ Identify tracked objects from previous frame to current frame. """
     # initialize database if necessary
     db = meta0.get('tracking')
@@ -69,6 +69,25 @@ def centroid_identify(meta0, meta1=None):
                     
     # assign ids to new objects
     ids1 = [ident or _id_generate(db) for ident in ids1]
+    
+    # calculate speeds
+    dtime = time1 - time0
+    speeds1 = []
+    directions1 = []
+    for idx_new, idx_old in enumerate(new2old):
+        new_cent = centroids1[idx_new]
+        try:
+            old_cent = centroids0[idx_old]
+        except IndexError:
+            old_cent = new_cent
+
+        speed_vector = (np.array(new_cent) - np.array(old_cent)) / dtime
+        speed = np.linalg.norm(speed_vector)
+        direction = (np.arccos(np.dot([1, 0], speed_vector/speed)) \
+                    if speed > 0.1 else 0.0) * 180 / np.pi
+
+        speeds1.append(speed)
+        directions1.append(direction)
                     
     # report found objects
     for found in [ident for ident in ids_missing if ident in ids1]:
@@ -95,6 +114,8 @@ def centroid_identify(meta0, meta1=None):
     for index in range(len(ids1)):
         meta1['objects'][index]['id'] = ids1[index]
         meta1['objects'][index]['centroid'] = centroids1[index].tolist()
+        meta1['objects'][index]['speed'] = speeds1[index]
+        meta1['objects'][index]['direction'] = directions1[index]
     meta1['tracking'] = db
                     
     return meta1
