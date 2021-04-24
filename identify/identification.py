@@ -71,6 +71,8 @@ def centroid_identify(time0, meta0, time1=None, meta1=None):
     ids1 = [ident or _id_generate(db) for ident in ids1]
     
     # calculate speeds
+    time0 = time0 or 0
+    time1 = time1 or time0
     dtime = time1 - time0
     speeds1 = []
     directions1 = []
