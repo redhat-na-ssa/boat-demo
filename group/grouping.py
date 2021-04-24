@@ -28,7 +28,7 @@ def meanshift_group(meta1=None):
         
     # update metadata
     for index in range(len(meta1.get('objects', []))):
-        meta1['objects'][index]['cluster'] = groups[index]
+        meta1['objects'][index]['cluster'] = int(groups[index])
     meta1['clusters'] = groups_centroids.tolist()
         
     return meta1
