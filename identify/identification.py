@@ -87,7 +87,7 @@ def centroid_identify(time0, meta0, time1=None, meta1=None):
         speed = np.linalg.norm(speed_vector)
         direction = (np.arccos(np.dot([1, 0], speed_vector/speed)) \
                     if speed > 0.000001 else 0.0) * 180 / np.pi
-        if speed_vector[1] < 0:
+        if speed_vector[1] > 0:
             direction = 360 - direction
 
         speeds1.append(speed)
