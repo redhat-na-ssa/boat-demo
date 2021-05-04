@@ -1,0 +1,77 @@
+apiVersion: v1
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      app.openshift.io/vcs-ref: ""
+      app.openshift.io/vcs-uri: https://github.com/redhat-naps-da/boat-demo.git
+      opendatahub.io/notebook-image-desc: Jupyter lab image for boats demo.
+      opendatahub.io/notebook-image-name: Boats demo labe environment
+      opendatahub.io/notebook-image-url: https://github.com/boat-demo/notebook
+    labels:
+      app: boat-demo-notebook-image
+      app.kubernetes.io/component: boat-demo-notebook-image
+      app.kubernetes.io/instance: boat-demo-notebook-image
+      app.kubernetes.io/part-of: boat-demo
+      opendatahub.io/notebook-image: "true"
+    name: boat-demo-notebook-image
+    namespace: boats-demo
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+      - annotations: null
+        from:
+          kind: ImageStreamTag
+          name: boat-demo-notebook-image:latest
+        name: latest
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      app.openshift.io/vcs-ref: ""
+      app.openshift.io/vcs-uri: https://github.com/redhat-naps-da/boat-demo.git
+    creationTimestamp: "2021-05-04T17:23:57Z"
+    generation: 2
+    labels:
+      app: boat-demo-notebook-image
+      app.kubernetes.io/component: boat-demo-notebook-image
+      app.kubernetes.io/instance: boat-demo-notebook-image
+      app.kubernetes.io/part-of: boat-demo
+    name: boat-demo-notebook-image
+    namespace: boats-demo
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: boat-demo-notebook-image:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      contextDir: /notebook
+      git:
+        uri: https://github.com/redhat-naps-da/boat-demo.git
+      type: Git
+    strategy:
+      dockerStrategy:
+        dockerfilePath: Dockerfile
+      type: Docker
+    successfulBuildsHistoryLimit: 5
+    triggers:
+    - generic:
+        secretReference:
+          name: boat-demo-notebook-image-generic-webhook-secret
+      type: Generic
+    - github:
+        secretReference:
+          name: boat-demo-notebook-image-github-webhook-secret
+      type: GitHub
+    - type: ConfigChange
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

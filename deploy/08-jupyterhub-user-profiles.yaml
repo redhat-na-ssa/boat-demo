@@ -1,0 +1,27 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  data:
+    profile: |
+      gpu: '0'
+      last_selected_image: boat-demo-notebook-image:latest
+      last_selected_size: Large
+  kind: ConfigMap
+  metadata:
+    labels:
+      app: jupyterhub
+    name: jupyterhub-singleuser-profile-USERNAME
+    namespace: boats-demo
+- apiVersion: v1
+  data:
+    JUPYTER_PRELOAD_REPOS: https://github.com/redhat-naps-da/boat-demo.git
+  kind: ConfigMap
+  metadata:
+    labels:
+      app: jupyterhub
+    name: jupyterhub-singleuser-profile-USERNAME-envs
+    namespace: boats-demo
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
