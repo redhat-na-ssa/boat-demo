@@ -1,5 +1,4 @@
-FROM registry.access.redhat.com/ubi8/python-38@sha256:1c950d36bae780bc794f2668e39548f269a88ac2f84a93360e4ca43968ad0ba0
-
+FROM quay.io/thoth-station/s2i-minimal-py38-notebook:v0.0.14
 USER root
 RUN dnf install -y mesa-libGL
 USER 1001
