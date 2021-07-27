@@ -1,0 +1,12 @@
+name: identify-serverless
+namespace: ""
+runtime: python
+image: bob.kozdemba.com:5000/redhat/identify:latest
+imageDigest: ""
+builder: quay.io/boson/faas-python-builder:v0.8.3
+builderMap:
+  default: quay.io/boson/faas-python-builder:v0.8.3
+volumes: []
+envs: []
+annotations: {}
+options: {}
