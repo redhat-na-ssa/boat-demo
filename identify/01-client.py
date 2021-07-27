@@ -1,6 +1,8 @@
 from datetime import datetime
 import requests
 
+IDENT_URL="http://identify-serverless-boats.apps.ocp.d1db.sandbox1682.opentlc.com"
+
 time0 = (datetime(2021, 4, 22, 3, 40, 31, 994728),
  None,
  {'objects': [{'box': [207.0, 509.0, 299.0, 532.0],
@@ -40,13 +42,15 @@ time1 = (datetime(2021, 4, 22, 3, 40, 32, 757943),
       'confidence': 0.8368647694587708,
       'class': 'boats'}]})
 
-IDENT_URL="http://192.168.0.3:8000"
 response = requests.post(IDENT_URL, json={"last": time0[2]}).json()
-print(f'response = {response}')
+# print(f'response = {response}')
 
-#time0 = (time0[0], time0[1], response)
-#time0
+time0 = (time0[0], time0[1], response)
+print(time0)
 
 #
-# curl -X POST --data '{"last":{"objects": [{"box": [211.0, 508.0, 307.0, 532.0], "confidence": 0.8908742070198059, "class": "boats"}]}}' -H "Content-Type: application/json" http://192.168.0.3:8000
+# To test using curl:
+#
+# IDENT_URL=$(kn service list identify-serverless --no-headers | awk '{print $2}')
+# curl -X POST --data '{"last":{"objects": [{"box": [211.0, 508.0, 307.0, 532.0], "confidence": 0.8908742070198059, "class": "boats"}]}}' -H "Content-Type: application/json" ${IDENT_URL}
 #

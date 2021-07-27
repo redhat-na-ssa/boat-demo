@@ -1,8 +1,8 @@
 name: identify-serverless
 namespace: ""
 runtime: python
-image: bob.kozdemba.com:5000/redhat/identify:latest
-imageDigest: ""
+image: default-route-openshift-image-registry.apps.ocp.d1db.sandbox1682.opentlc.com/boats/identify:latest
+imageDigest: sha256:921726575252e12f401c5d3e5c2f72dfee65e42add93116f5a76c75c126b3484
 builder: quay.io/boson/faas-python-builder:v0.8.3
 builderMap:
   default: quay.io/boson/faas-python-builder:v0.8.3
