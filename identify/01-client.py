@@ -1,6 +1,16 @@
 from datetime import datetime
 import requests
 
+#
+# Test client for serverless function.
+#
+
+#
+# To obtain IDENT_URL :
+#
+# kn service list
+#
+
 IDENT_URL="http://identify-serverless-boats.apps.ocp.d1db.sandbox1682.opentlc.com"
 
 time0 = (datetime(2021, 4, 22, 3, 40, 31, 994728),
