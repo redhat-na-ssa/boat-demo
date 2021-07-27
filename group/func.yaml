@@ -1,0 +1,12 @@
+name: group-serverless
+namespace: ""
+runtime: python
+image: default-route-openshift-image-registry.apps.ocp.d1db.sandbox1682.opentlc.com/boats/group
+imageDigest: sha256:4bef5fef275221a1d25a6a5c64d0160a4553b19023ef3af6c075725411bc9db0
+builder: quay.io/boson/faas-python-builder:v0.8.3
+builderMap:
+  default: quay.io/boson/faas-python-builder:v0.8.3
+volumes: []
+envs: []
+annotations: {}
+options: {}

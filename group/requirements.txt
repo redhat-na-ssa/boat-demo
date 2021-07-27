@@ -2,3 +2,4 @@ Flask==1.1.2
 gunicorn==20.1.0
 numpy==1.20.2
 scikit-learn==0.24.1
+parliament-functions==0.1.0
