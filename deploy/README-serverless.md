@@ -114,7 +114,7 @@ Function deployed at URL: http://identify-serverless-boats-demo.apps.ocp.d1db.sa
 
 Configure and run the REST test client
 
-Edit `01-client.py` and set the IDENT_URL variable with the service url returned by the deployment.
+Edit `01-client.py` and set the `IDENT_URL` variable with the service `URL` returned by the function deployment.
 
 Example
 ```
