@@ -2,8 +2,8 @@
 
 ## Overview
 
-As of today, OpenShift Serverless functions are built, tested and deployed using a Fedora 34 bastion
-host with podman support few knative client programs.
+As of today, OpenShift Serverless functions for this project are built, tested and deployed using a Fedora 34 bastion. 
+This should improve as python serverless functions become generally available.
 
 ### Bastion host configuration
 
