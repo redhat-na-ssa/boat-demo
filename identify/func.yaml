@@ -1,8 +1,8 @@
 name: identify-serverless
 namespace: ""
 runtime: python
-image: default-route-openshift-image-registry.apps.ocp.d1db.sandbox1682.opentlc.com/boats/identify:latest
-imageDigest: sha256:921726575252e12f401c5d3e5c2f72dfee65e42add93116f5a76c75c126b3484
+image: default-route-openshift-image-registry.apps.ocp.d1db.sandbox1682.opentlc.com/boats-demo/identify
+imageDigest: sha256:9fc4b53326947221d133b72c7edec2233f7799c4700506855a1009d18a1acc39
 builder: quay.io/boson/faas-python-builder:v0.8.3
 builderMap:
   default: quay.io/boson/faas-python-builder:v0.8.3
