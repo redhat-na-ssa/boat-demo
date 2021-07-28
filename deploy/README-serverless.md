@@ -10,7 +10,7 @@ This should improve as python serverless functions become generally available.
 1) Install `podman` and `wget`
 
 ```
-sudo yum install -y podman wget
+sudo dnf install -y podman wget
 ```
 
 2) Create directories
@@ -41,7 +41,7 @@ kn plugin list
 
 Example output
 ```
-- kn-func : /home/ec2-user/.config/kn/plugins/kn-func
+- kn-func : /home/fedora/.config/kn/plugins/kn-func
 ```
 
 Open a second terminal and start the podman API service.
@@ -91,7 +91,7 @@ export DOCKER_HOST=tcp://127.0.0.1:1234
 
 Run a build
 ```
-git clone https://github.com/redhat-naps-da/boats-demo.git
+git clone https://github.com/redhat-naps-da/boat-demo.git
 cd boats-demo/identify
 kn func build --image=$HOST/boats-demo/identify
 ```
