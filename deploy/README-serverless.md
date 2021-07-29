@@ -136,7 +136,7 @@ Repeat the same for the *group* service.
 Trouble Shooting
 
 As of today, RHEL8.4 reports the following error when deploying probably due
-to the version of `podman`.
+to the version of `podman`. See https://issues.redhat.com/projects/SRVOCF/issues/SRVOCF-353?filter=allissues
 
 ```
 kn func deploy
