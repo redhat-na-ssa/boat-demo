@@ -1,4 +1,4 @@
-# How to deploy the boat demo's *identify* and *group* services as OpenShift Serverless Functions
+# How to deploy the boat demo's services as OpenShift Serverless Functions
 
 ## Overview
 
@@ -133,7 +133,20 @@ Example output
 
 Repeat the same for the *group* service.
 
-Trouble Shooting
+To build and deploy the *detect* service as a serverless function, buildpacks must be used
+to custom build and runtime container images. A set of example Dockerfiles are provided in the
+`serverless` directory. Refer to `serverless/buildpacks/stacks/python/build/Dockerfile` and `serverless//buildpacks/stacks/python/run/Dockerfile`. To build these images 
+the [`pack` utility](https://github.com/buildpacks/pack) must be 
+installed before a top level `make` command in the `serverless/buildpacks` directory is run. 
+
+```
+$ cd serverless/buildpacks
+$ make
+```
+
+Once the build and run images are created, proceed as usual to build and deploy the *detect* serverless function using `kn func build` and `kn func deploy`.
+
+#### Trouble Shooting
 
 As of today, RHEL8.4 reports the following error when deploying probably due
 to the version of `podman`. See https://issues.redhat.com/projects/SRVOCF/issues/SRVOCF-353?filter=allissues
