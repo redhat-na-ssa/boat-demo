@@ -148,6 +148,15 @@ Once the build and run images are created, proceed as usual to build and deploy 
 
 #### Trouble Shooting
 
+Versions
+```
+$ kn func --version
+v0.17.1
+
+$ pack --version
+0.20.0+git-66a4f32.build-2668
+```
+
 As of today, RHEL8.4 reports the following error when deploying probably due
 to the version of `podman`. See https://issues.redhat.com/projects/SRVOCF/issues/SRVOCF-353?filter=allissues
 
