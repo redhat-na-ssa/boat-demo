@@ -1,0 +1,13 @@
+name: detect-serverless
+namespace: ""
+runtime: python
+image: default-route-openshift-image-registry.apps.ocp.d1db.sandbox1682.opentlc.com/boats-demo/detect:latest
+imageDigest: sha256:d3a5d199ccbb5b6bdacb47e210c06fb39a63bf50a41981bf64b44cec66d9535a
+builder: quay.io/boson/faas-python-builder:tip
+builderMap:
+  default: quay.io/boson/faas-python-builder:tip
+volumes: []
+envs: []
+annotations: {}
+options: {}
+labels: []
