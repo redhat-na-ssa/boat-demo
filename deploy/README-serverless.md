@@ -146,6 +146,26 @@ $ make
 
 Once the build and run images are created, proceed as usual to build and deploy the *detect* serverless function using `kn func build` and `kn func deploy`.
 
+```
+$ kn service list
+NAME                  URL                                                                           LATEST                      AGE     CONDITIONS   READY   REASON
+detect-serverless     http://detect-serverless-boats-demo.apps.ocp.d1db.sandbox1682.opentlc.com     detect-serverless-00001     2d15h   3 OK / 3     True
+group-serverless      http://group-serverless-boats-demo.apps.ocp.d1db.sandbox1682.opentlc.com      group-serverless-00001      30d     3 OK / 3     True
+identify-serverless   http://identify-serverless-boats-demo.apps.ocp.d1db.sandbox1682.opentlc.com   identify-serverless-00001   30d     3 OK / 3     True
+```
+
+Edit the `DETECT_URL` variable in the `01-client.py` program and run a detection test. For this example the 
+client and server were separated by a wide area network which accounts for the somewhat slow response time.
+
+```
+$ time python 01-client.py
+response = {'objects': [{'box': [542.0, 405.0, 612.0, 470.0], 'confidence': 0.8979572653770447, 'class': 'boats'}, {'box': [730.0, 250.0, 806.0, 311.0], 'confidence': 0.8895080089569092, 'class': 'boats'}, {'box': [710.0, 631.0, 793.0, 653.0], 'confidence': 0.8804123401641846, 'class': 'boats'}, {'box': [1066.0, 344.0, 1145.0, 365.0], 'confidence': 0.8695586323738098, 'class': 'boats'}, {'box': [427.0, 413.0, 504.0, 441.0], 'confidence': 0.8631386756896973, 'class': 'boats'}, {'box': [285.0, 638.0, 360.0, 688.0], 'confidence': 0.8413398861885071, 'class': 'boats'}, {'box': [84.0, 412.0, 150.0, 484.0], 'confidence': 0.8408854603767395, 'class': 'boats'}]}
+
+real	0m0.847s
+user	0m0.147s
+sys	0m0.100s
+```
+
 #### Trouble Shooting
 
 Versions
