@@ -14,7 +14,7 @@ items:
     namespace: boats-demo
 - apiVersion: v1
   data:
-    JUPYTER_PRELOAD_REPOS: https://github.com/redhat-naps-da/boat-demo.git
+    JUPYTER_PRELOAD_REPOS: https://github.com/redhat-na-ssa/boat-demo.git
   kind: ConfigMap
   metadata:
     labels:

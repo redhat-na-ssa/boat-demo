@@ -5,7 +5,7 @@ items:
   metadata:
     annotations:
       app.openshift.io/vcs-ref: ""
-      app.openshift.io/vcs-uri: https://github.com/redhat-naps-da/boat-detect
+      app.openshift.io/vcs-uri: https://github.com/redhat-na-ssa/boat-detect
     labels:
       app: boat-group
       app.kubernetes.io/component: boat-group
@@ -24,7 +24,7 @@ items:
   metadata:
     annotations:
       app.openshift.io/vcs-ref: ""
-      app.openshift.io/vcs-uri: https://github.com/redhat-naps-da/boat-detect
+      app.openshift.io/vcs-uri: https://github.com/redhat-na-ssa/boat-detect
     labels:
       app: boat-group
       app.kubernetes.io/component: boat-group
@@ -48,7 +48,7 @@ items:
     source:
       contextDir: /group
       git:
-        uri: https://github.com/redhat-naps-da/boat-detect
+        uri: https://github.com/redhat-na-ssa/boat-detect
       type: Git
     strategy:
       sourceStrategy:
@@ -75,7 +75,7 @@ items:
   metadata:
     annotations:
       app.openshift.io/vcs-ref: ""
-      app.openshift.io/vcs-uri: https://github.com/redhat-naps-da/boat-detect
+      app.openshift.io/vcs-uri: https://github.com/redhat-na-ssa/boat-detect
     labels:
       app: boat-group
       app.kubernetes.io/component: boat-group
@@ -125,7 +125,7 @@ items:
   metadata:
     annotations:
       app.openshift.io/vcs-ref: ""
-      app.openshift.io/vcs-uri: https://github.com/redhat-naps-da/boat-group
+      app.openshift.io/vcs-uri: https://github.com/redhat-na-ssa/boat-group
     labels:
       app: boat-group
       app.kubernetes.io/component: boat-group

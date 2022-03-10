@@ -5,7 +5,7 @@ items:
   metadata:
     annotations:
       app.openshift.io/vcs-ref: ""
-      app.openshift.io/vcs-uri: https://github.com/redhat-naps-da/boat-demo.git
+      app.openshift.io/vcs-uri: https://github.com/redhat-na-ssa/boat-demo.git
       opendatahub.io/notebook-image-desc: Jupyter lab image for boats demo.
       opendatahub.io/notebook-image-name: Boats demo labe environment
       opendatahub.io/notebook-image-url: https://github.com/boat-demo/notebook
@@ -31,7 +31,7 @@ items:
   metadata:
     annotations:
       app.openshift.io/vcs-ref: ""
-      app.openshift.io/vcs-uri: https://github.com/redhat-naps-da/boat-demo.git
+      app.openshift.io/vcs-uri: https://github.com/redhat-na-ssa/boat-demo.git
     creationTimestamp: "2021-05-04T17:23:57Z"
     generation: 2
     labels:
@@ -54,7 +54,7 @@ items:
     source:
       contextDir: /notebook
       git:
-        uri: https://github.com/redhat-naps-da/boat-demo.git
+        uri: https://github.com/redhat-na-ssa/boat-demo.git
       type: Git
     strategy:
       dockerStrategy:

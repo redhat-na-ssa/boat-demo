@@ -5,7 +5,7 @@ items:
   metadata:
     annotations:
       app.openshift.io/vcs-ref: ""
-      app.openshift.io/vcs-uri: https://github.com/redhat-naps-da/boat-demo
+      app.openshift.io/vcs-uri: https://github.com/redhat-na-ssa/boat-demo
     labels:
       app: s2i-ubi8-py38-opengl
       app.kubernetes.io/component: s2i-ubi8-py38-opengl
@@ -22,7 +22,7 @@ items:
   metadata:
     annotations:
       app.openshift.io/vcs-ref: ""
-      app.openshift.io/vcs-uri: https://github.com/redhat-naps-da/boat-demo
+      app.openshift.io/vcs-uri: https://github.com/redhat-na-ssa/boat-demo
     labels:
       app: s2i-ubi8-py38-opengl
       app.kubernetes.io/component: s2i-ubi8-py38-opengl
@@ -42,7 +42,7 @@ items:
     source:
       contextDir: /s2i-ubi8-py38-opengl
       git:
-        uri: https://github.com/redhat-naps-da/boat-demo
+        uri: https://github.com/redhat-na-ssa/boat-demo
       type: Git
     strategy:
       dockerStrategy:
